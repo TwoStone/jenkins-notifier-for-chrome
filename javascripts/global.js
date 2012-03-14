@@ -1,14 +1,6 @@
 var API_SUB = "/api/json";
-
-$.ajaxSetup({
-	"error" : function() {
-		$.fn.desktopNotify({
-			picture : getIcon("FAILURE"),
-			title : "Failed to access to Jenkins",
-			text : localStorage["jenkins-url"]
-		});
-	}
-});
+var JOB = "job/";
+var BUILD_NUMBER = "lastBuild";
 
 function appendLastSlash(url) {
     var lastChar = url.substring(url.length - 1);
@@ -45,4 +37,19 @@ function getColor(result) {
 function getJobs() {
 	var jobString = localStorage["jobs"];
 	return jobString.split(",");
+}
+
+function getJenkinsUrl() {
+	return localStorage["jenkins-url"];
+}
+
+function fetchJobState(jobname, callback) {
+	var url = appendLastSlash(getJenkinsUrl()) + JOB + appendLastSlash(jobname) + API_SUB;
+	$.getJSON(url, function(json) {
+		callback(json);
+	});
+}
+
+function fetchBuild(jobname, buildNum, callback) {
+	
 }

@@ -1,3 +1,8 @@
+html {
+	font-family: sans-serif;
+	font-size: small;
+}
+
 .main {
     width: 440px;
     color: #333;
@@ -26,4 +31,22 @@
 }
 #jenkins-url, #websocket-url {
     width: 100%;
+}
+
+#polling-interval {
+	width: 20%;
+}
+
+.annotation {
+	color: graytext;
+	font-size: x-small;
+}
+
+#jobs {
+	
+}
+
+#jobs table {
+	border: 1px graytext solid;	
+	width: 440px;
 }

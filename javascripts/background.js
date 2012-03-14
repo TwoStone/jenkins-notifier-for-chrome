@@ -5,9 +5,21 @@ $(function(){
     var useWebsocket   = localStorage["use-websocket"];
     var websocketUrl   = localStorage["websocket-url"];
 
+    
+    
     if (apiUrl == null || jobName == null || (useWebsocket == 'true' && websocketUrl == null)) {
         return;
     }
+    
+    $.ajaxSetup({
+    	"error" : function() {
+    		$.fn.desktopNotify({
+    			picture : getIcon("FAILURE"),
+    			title : "Failed to access to Jenkins",
+    			text : localStorage["jenkins-url"]
+    		});
+    	}
+    });
 
     apiUrl = appendLastSlash(apiUrl);
     var prevBuild = -1;
@@ -30,7 +42,7 @@ $(function(){
  
 
     // replace popup event
-    chrome.browserAction.setPopup({popup : ""});
+   // chrome.browserAction.setPopup({popup : ""});
 //    chrome.browserAction.onClicked.addListener(function(tab) {
 //        window.open(apiUrl + JOB + jobName);
 //    });
