@@ -19,7 +19,7 @@ $(function() {
         if(localStorage['use-websocket'] == 'true') {
             $("#use-websocket").attr("checked","checked")
         }else{
-            $("#use-websocket").attr("checked","")
+            $("#use-websocket").attr("checked",false)
         }
         update();
     }
@@ -75,15 +75,7 @@ $(function() {
     	});
     }
     
-    function contains(array, element) {
-    	var result = false;
-    	$(array).each(function(i, e) {
-    		if (e == element) {
-    			result = true;
-    		}
-    	});
-    	return result;
-    }
+    
     
     function getImage(color) {
     	var strings = color.split("_");

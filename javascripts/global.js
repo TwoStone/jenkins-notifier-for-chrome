@@ -43,13 +43,33 @@ function getJenkinsUrl() {
 	return localStorage["jenkins-url"];
 }
 
+function getPollingInterval() {
+	return localStorage["polling-interval"] * 1000;
+}
+
 function fetchJobState(jobname, callback) {
-	var url = appendLastSlash(getJenkinsUrl()) + JOB + appendLastSlash(jobname) + API_SUB;
+	var url = appendLastSlash(getJenkinsUrl()) + JOB + jobname + API_SUB;
 	$.getJSON(url, function(json) {
 		callback(json);
 	});
 }
 
-function fetchBuild(jobname, buildNum, callback) {
-	
+function fetchBuild(jobname, callback, buildNum) {
+	if (buildNum == null) {
+		buildNum = BUILD_NUMBER;
+	}
+	var url = appendLastSlash(getJenkinsUrl()) + JOB + appendLastSlash(jobname) + buildNum + API_SUB;
+	$.getJSON(url, function(json, result) {
+		callback(json, result);
+	});
+}
+
+function contains(array, element) {
+	var result = false;
+	$(array).each(function(i, e) {
+		if (e == element) {
+			result = true;
+		}
+	});
+	return result;
 }

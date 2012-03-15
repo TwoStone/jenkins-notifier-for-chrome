@@ -1,13 +1,12 @@
 $(function(){
     var apiUrl = localStorage["jenkins-url"];
-    var jobName = localStorage["job-name"];
     var jobs = getJobs();
     var useWebsocket   = localStorage["use-websocket"];
     var websocketUrl   = localStorage["websocket-url"];
 
     
     
-    if (apiUrl == null || jobName == null || (useWebsocket == 'true' && websocketUrl == null)) {
+    if (apiUrl == null || jobs == null || (useWebsocket == 'true' && websocketUrl == null)) {
         return;
     }
     
@@ -23,9 +22,7 @@ $(function(){
 
     apiUrl = appendLastSlash(apiUrl);
     var prevBuild = -1;
-    var JOB = "job/"
-    var BUILD_NUMBER = "lastBuild"
-    var POLLING_TIME = 60 * 1000;
+    var prevBuilds = {};
 
     $.ajaxSetup({
         "error": function() {
@@ -39,36 +36,28 @@ $(function(){
         }
     });
 
- 
-
-    // replace popup event
-   // chrome.browserAction.setPopup({popup : ""});
-//    chrome.browserAction.onClicked.addListener(function(tab) {
-//        window.open(apiUrl + JOB + jobName);
-//    });
-
-    function fetch(apiUrl, num) {
-        fetch(apiUrl,num, jobName);
+    function fetchAll() {
+    	$(jobs).each(function(i, e) {
+    		fetch(e);
+    	});
     }
-    
-    function fetch(apiUrl, num, job) {
-        if (num == null) {
-            num = BUILD_NUMBER;
-        }
-        var url = apiUrl + JOB + job + "/" + num + API_SUB;
 
-        $.getJSON(url, function(json, result) {
+    function fetch(job, num) {
+    	fetchBuild(job, function(json, result) {
             if (result != "success") {
                 return;
             }
-            if (prevBuild != json.number) {
-                prevBuild = json.number;
+            if (prevBuilds[job] == undefined || prevBuilds[job]["number"] != json.number && prevBuilds[job]["result"] != json.result) {
+                prevBuilds[job] = {};
+            	prevBuilds[job]["number"] = json.number;
+                prevBuilds[job]["result"] = json.result;
+                
                 chrome.browserAction.setBadgeText({text: String(json.number)});
                 chrome.browserAction.setBadgeBackgroundColor({color: getColor(json.result)});
                 $.fn.desktopNotify(
                     {
                         picture: getIcon(json.result),
-                        title: "#" + json.number + " (" + json.result + ")",
+                        title: json.fullDisplayName + " (" + json.result + ")",
                         text : json.actions[0].causes[0].shortDescription
                     }
                 );
@@ -85,8 +74,8 @@ $(function(){
         });
 
         ws.bind("websocket::message", function(_, obj) {
-            if (obj.project == jobName) {
-                fetch(apiUrl, obj.number);
+            if (contains(jobs, obj.project)) {
+                fetch(obj.project, obj.number);
             }
         });
 
@@ -117,9 +106,9 @@ $(function(){
     if (useWebsocket == 'true') {
         bind(websocketUrl, apiUrl);
     } else {
-        fetch(apiUrl, BUILD_NUMBER); // first fetch
+        fetchAll(); // first fetch
         setInterval(function() {
-            fetch(apiUrl, BUILD_NUMBER);
-        }, POLLING_TIME);
+            fetchAll();
+        }, getPollingInterval());
     }
 });
