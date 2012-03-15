@@ -22,7 +22,8 @@
             text : "",
             ondisplay : ondisplay,
             onclose : onclose,
-            fade : false
+            fade : false,
+            timeout: 10000
         };
 
         var ondisplay = function() {};
@@ -39,6 +40,14 @@
                 popup.ondisplay = setting.ondisplay;
                 popup.onclose = setting.onclose;
                 popup.show();
+                
+                if (setting.timeout) {
+                	setTimeout(function(){
+                		if (popup.cancel) {
+                			popup.cancel();
+                		}
+                	}, setting.timeout);
+                }
             }
         }
 
