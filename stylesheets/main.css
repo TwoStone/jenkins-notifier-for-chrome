@@ -50,3 +50,8 @@ html {
 	border: 1px graytext solid;	
 	width: 440px;
 }
+
+#jobs img {
+	width: 32px;
+	height: 32px;
+}

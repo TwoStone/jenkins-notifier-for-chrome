@@ -69,7 +69,9 @@ function getImageElement(image) {
 	if (image == "aborted") {
 		image = "grey";
 	}
-	return $("<img/>").attr("src","images/" + image + ".gif");
+	image = image.split("_")[0];
+	var img = $("<img/>").attr("src","images/" + image + ".png").attr("alt",image);
+	return img;
 	
 }
 

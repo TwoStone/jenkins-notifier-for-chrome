@@ -1,3 +1,8 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
 #popup {
 	width: 300px;
 }
@@ -8,7 +13,18 @@
 	height: 25px;
 	vertical-align: middle;
 	clear: both;
+	background-color: #EEE;
 }
+
+#popup .job:HOVER {
+	background-color: #DDD;
+}
+
+a, a:HOVER, a:ACTIVE, a:VISITED {
+	text-decoration: none;
+	color: black;
+}
+
 
 #popup div {
 	display: block;
@@ -39,6 +55,12 @@
 #jenkins-url {
 	font-size: medium;
 	width: 100%;
-	border-bottom: 1px solid gray;
-	margin-bottom: 10px;
+	padding: 5px;
+	background-color: #58ACFA;
+	margin-bottom: 1px;
+	color: white;
+}
+
+#jenkins-url > * {
+	color: white;
 }
