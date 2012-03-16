@@ -49,10 +49,11 @@ function getPollingInterval() {
 
 function fetchJobState(jobname, callback) {
 	var url = appendLastSlash(getJenkinsUrl()) + JOB + jobname + API_SUB;
-	$.getJSON(url, function(json) {
-		callback(json);
+	$.getJSON(url, function(json, result) {
+		callback(json, result);
 	});
 }
+
 
 function fetchBuild(jobname, callback, buildNum) {
 	if (buildNum == null) {
@@ -60,8 +61,16 @@ function fetchBuild(jobname, callback, buildNum) {
 	}
 	var url = appendLastSlash(getJenkinsUrl()) + JOB + appendLastSlash(jobname) + buildNum + API_SUB;
 	$.getJSON(url, function(json, result) {
-		callback(json, result);
+		callback(json, result, jobname);
 	});
+}
+
+function getImageElement(image) {
+	if (image == "aborted") {
+		image = "grey";
+	}
+	return $("<img/>").attr("src","images/" + image + ".gif");
+	
 }
 
 function contains(array, element) {
@@ -72,4 +81,10 @@ function contains(array, element) {
 		}
 	});
 	return result;
+}
+
+function newAnchor(href, text) {
+	if (text == null)
+		text = href;
+	return $("<a/>").attr("href", href).attr("target","_blank").text(text);
 }

@@ -60,7 +60,7 @@ $(function() {
     		$(json.jobs).each(function(i, e) {
     			table.append($('<tr/>')
     					.append($('<td/>').append($('<input type="checkbox"/>')))
-    					.append($('<td/>').append(getImage(e.color)))
+    					.append($('<td/>').append(getImageElement(e.color)))
     					.append($('<td/>').append($('<a/>').attr('href',e.url).text(e.name))).data('name',e.name).data('url',e.url));
     		});
     		

@@ -1,14 +1,18 @@
-Jenkins Notifier for Chrome(TM)
+Jenkins Notifier for Chrome(TM) Plus
 ======================================
 A Google Chrome(TM) extension for [Jenkins](http://jenkins-ci.org/).
+Based on Jenkins Notifier for Chrome(TM)
 
 Features
 ----------------
  * Build notifications.
  * Build result icons(blue / yellow / red / grey).
+ * Select multiple jobs
+ * Popup that shows job states
 
 Authors
 ----------------
+ * @TwoStone
  * @mallowlabs
  * @mzp
 
@@ -22,10 +26,14 @@ Credits
 Icons from original [Jenkins](http://jenkins-ci.org/).
 
  * images/icon.png
- * images/blue.png
- * images/yellow.png
- * images/red.png
- * images/grey.png
+ * images/blue.gif
+ * images/blue_anim.gif
+ * images/yellow.gif
+ * images/yellow_anim.gif
+ * images/red.gif
+ * images/red_anim.gif
+ * images/grey.gif
+ * images/grey_anim.gif
 
 License (without icons)
 ------------------------------
