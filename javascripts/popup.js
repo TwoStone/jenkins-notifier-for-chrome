@@ -4,23 +4,33 @@ $(function() {
 	var popup = $("#popup");
 	$("#jenkins-url").append(newAnchor(getJenkinsUrl()));
 	
-	$(jobs).each(function(i,e) {
-		fetchBuild(e,createJobRow);
-	});
+//	$(jobs).each(function(i,e) {
+//		fetchBuild(e,createJobRow);
+//	});
+	getJobDetails();
 	
-	function createJobRow(job, result , jobname) {
-		if (result == "success") {
-			fetchJobState(jobname, function(json, xhrresult) {
-				if (xhrresult == "success") {
-					var jobEl = $("<div/>").addClass("job");
-					jobEl.append($("<div/>").addClass("state").append(getImageElement(json.color)));		
-					jobEl.append($("<div/>").addClass("name").append($("<a/>").attr("href",job.url).attr("target","_blank").text(job.fullDisplayName)));
-					popup.append(jobEl);
-				}
-			});
-		}
+	function createJobRow(job) {
+			var jobEl = $("<div/>").addClass("job");
+		jobEl.append($("<div/>").addClass("state").append(
+				getImageElement(job.color)));
+		jobEl.append($("<div/>").addClass("name").append(
+				$("<a/>").attr("href", job.lastBuild.url).attr("target", "_blank").text(
+						job.lastBuild.fullDisplayName)));
+		popup.append(jobEl);
 	}
 	
+	function getJobDetails() {
+		var url = appendLastSlash(getJenkinsUrl()) + API_SUB + "?tree=jobs[name,url,color,lastBuild[number,url,result,fullDisplayName]]";
+		$.getJSON(url, function(json, result){
+			if (result == "success") {
+				$(json.jobs).each(function(i, e) {
+					if (contains(jobs, e.name)) {
+						createJobRow(e);
+					}
+				});
+			}
+		});
+	}
 	
 });
 
