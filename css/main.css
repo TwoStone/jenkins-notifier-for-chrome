@@ -1,0 +1,14 @@
+html {
+	font-family: sans-serif;
+	font-size: small;
+}
+
+#jobs table td img {
+	width: 24px;
+	height: 24px;
+}
+
+#jobs table .watched, 
+#jobs table .status {
+	text-align: center;
+}

@@ -3,47 +3,33 @@
     "name": "Jenkins Notifier for Chrome™ Plus",
     "version": "0.1.1",
     "icons": {
-        "128": "images/icon.png",
-        "48": "images/icon.png",
-        "16": "images/icon.png"
+        "128": "img/icon.png",
+        "48": "img/icon.png",
+        "16": "img/icon.png"
     },
     "options_page": "options.html",
-    "background": {
-    	"scripts" : ["javascripts/background.js"]
-    },
     "browser_action": {
-        "default_icon": "images/icon.png",
+        "default_icon": "img/icon.png",
         "default_title": "Jenkins Notifier for Chrome™ Plus",
         "default_popup": "popup.html"
     },
     "permissions": [
+    	"storage",
         "background",
         "notifications",
         "http://*/",
         "https://*/"
     ],
     "web_accessible_resources" : [
-    	"images/aborted.png",
-    	"images/blue_anime.gif",
-    	"images/blue.gif",
-    	"images/blue.png",
-    	"images/grey_anime.gif",
-    	"images/grey.gif",
-    	"images/grey.png",
-    	"images/icon.png",
-    	"images/red_anime.gif", 
-    	"images/red.gif", 
-    	"images/red.png", 
-    	"images/yellow_anime.gif", 
-    	"images/yellow.gif", 
-    	"images/yellow.png", 
-    	"stylesheets/main.css",
-    	"stylesheets/popup.css",
-    	"javascripts/background.js",
-    	"javascripts/global.js",
-    	"javascripts/jquery.desktopnotify.js",
-    	"javascripts/jquery.min.js",
-    	"javascripts/options.js",
-    	"javascripts/popup.js"
+    	"img/blue_anime.gif",
+    	"img/blue.png",
+    	"img/icon.png",
+    	"css/main.css",
+    	"css/bootstrap.css",
+    	"css/popup.css",
+    	"js/angular-0.9.19.js",
+    	"js/bootstrap.js",
+    	"js/jquery-1.9.1.js",
+    	"js/controller.js"
     ]
 }
