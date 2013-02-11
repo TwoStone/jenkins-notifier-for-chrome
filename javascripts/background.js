@@ -54,6 +54,8 @@ $(function(){
                 
                 chrome.browserAction.setBadgeText({text: String(json.number)});
                 chrome.browserAction.setBadgeBackgroundColor({color: getColor(json.result)});
+                
+                
                 $.fn.desktopNotify(
                     {
                         picture: getIcon(json.result),

@@ -95,6 +95,10 @@ $(function() {
         window.close();
     });
     
+    $("#jenkins-url").change(function(e) {
+    	loadJobs();
+    });
+    
     $(".load").click(function(e) {
     	loadJobs();
     });
