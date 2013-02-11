@@ -1,66 +1,26 @@
 body {
-	margin: 0;
-	padding: 0;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
 #popup {
 	width: 300px;
 }
 
-#popup .job {
-	position: relative;
-	width: 100%;
-	height: 25px;
-	vertical-align: middle;
-	clear: both;
-	background-color: #EEE;
+#popup img {
+	width: 20px;
+	height:  20px;
 }
 
-#popup .job:HOVER {
-	background-color: #DDD;
+#popup .table {
+	margin: 0;
 }
 
-a, a:HOVER, a:ACTIVE, a:VISITED {
-	text-decoration: none;
-	color: black;
-}
-
-
-#popup div {
-	display: block;
-}
-#popup .job div {
-	float: left;
-	padding: 5px;
-}
-
-#popup .state {
-	width: 16px;
-	height: 16px;
-	display: block;
-}
-
-#popup .state img {
-	width: 16px;
-	height: 16px;
-}
-
-
-#popup .name {
-	position: relative;
-	right: 0px;
-	width: 200px;
-}
-
-#jenkins-url {
-	font-size: medium;
-	width: 100%;
-	padding: 5px;
-	background-color: #58ACFA;
-	margin-bottom: 1px;
+#popup th {
+	background: #006DCC;
 	color: white;
 }
 
-#jenkins-url > * {
+#popup th a {
 	color: white;
 }
