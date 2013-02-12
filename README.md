@@ -6,7 +6,7 @@ Based on Jenkins Notifier for Chrome(TM)
 Features
 ----------------
  * Build notifications.
- * Build result icons(blue / yellow / red / grey).
+ * Build result icons(green / yellow / red / grey).
  * Select multiple jobs
  * Popup that shows job states
 
@@ -19,21 +19,18 @@ Authors
 Requirement
 ----------------
 
- * Chrome 10 or latter
+ * Chrome 22 or latter
 
 Credits
 ----------------
 Icons from original [Jenkins](http://jenkins-ci.org/).
 
  * images/icon.png
- * images/blue.gif
- * images/blue_anim.gif
- * images/yellow.gif
- * images/yellow_anim.gif
- * images/red.gif
- * images/red_anim.gif
- * images/grey.gif
- * images/grey_anim.gif
+ * images/blue.png
+ * images/yellow.png
+ * images/red.png
+ * images/grey.png
+ * images/aborted.png
 
 License (without icons)
 ------------------------------
