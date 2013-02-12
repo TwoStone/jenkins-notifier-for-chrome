@@ -19,6 +19,7 @@ body {
 #popup th {
 	background: #006DCC;
 	color: white;
+	font-weight: normal;
 }
 
 #popup th a {

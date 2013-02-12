@@ -1,20 +1,19 @@
 /**
  * @author nw
  */
-function PopupControl($scope, $timeout, $log, options, jenkins) {
+function PopupControl($scope, $timeout, log, storage, jenkins) {
 	$scope.options = {};
 	
 	$scope.jobs = {};
 	
 	$scope.loadOptions = function() {
-		options.load(function(opt){
+		storage.get('options', function(opt) {
 			$scope.$apply(function(){
 				$scope.options = opt;
 				loadInformation();
 				loadJobs();
 			});
-		})
-		
+		});
 	}
 	
 	$scope.jenkinsDesc = undefined;
@@ -29,7 +28,7 @@ function PopupControl($scope, $timeout, $log, options, jenkins) {
 				});
 			},
 			error: function(data) {
-				$log.error(data);
+				log.error(data);
 			}
 		})
 	}

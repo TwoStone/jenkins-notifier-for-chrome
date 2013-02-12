@@ -1,32 +1,39 @@
-var Jenkins;
-
-Jenkins = (function() {
+var Jenkins = function(storage, $http, $log) {
 	
 	var api = "/api/json";
+	var options = {};
+		
+	storage.onUpdate('options', function(){
+		$log.info("Options changed");
+		loadOptions();
+	});
 	
-	function Jenkins(options, $http) {
-		this.$http = $http;
-		this.options = options;
-	}
-	
-	Jenkins.prototype.getJenkinsInformation = function(callback) {
-		var url = this.options.getJenkinsUrl() + api;
+	this.getJenkinsInformation = function(callback) {
+		var url = options.jenkins_url + api;
 		url += "?tree=description";
-		this.$http.get(url).success(function(data) {
+		$http.get(url).success(function(data) {
 			callback.success(data);
 		})
 		
 	};
 	
-	Jenkins.prototype.getJobs = function(callback) {
-		var url = this.options.getJenkinsUrl() + api;
-		url += "?tree=jobs[name,color,url]"
-		this.$http.get(url).success(function(data) {
-			callback.success(data.jobs);
-		}).error(function(data)  {
-			callback.error(data);
-		});
+	this.getJobs = function(callback) {
+		if (options) {
+			var url = options.jenkins_url + api;
+			url += "?tree=jobs[name,color,url]"
+			$http.get(url).success(function(data) {
+				callback.success(data.jobs);
+			}).error(function(data)  {
+				callback.error(data);
+			});
+		}
 	};
 	
-	return Jenkins;
-})();
+	var loadOptions = function() {
+		storage.get('options', function(opt) {
+			options = opt;
+		});
+	}
+	
+	loadOptions();
+};

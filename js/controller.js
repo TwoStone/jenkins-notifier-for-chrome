@@ -1,7 +1,7 @@
 /**
  * @author nw
  */
-function OptionsControl($scope, $http, $timeout, $log, options, jenkins) {
+function OptionsControl($scope, $http, $timeout, log, storage, jenkins) {
 	$scope.options = {
 		jenkins_url: undefined,
 		interval: undefined,
@@ -20,10 +20,8 @@ function OptionsControl($scope, $http, $timeout, $log, options, jenkins) {
 	}
 	
 	$scope.urlLostFocus = function() {
-		if ($scope.options.jenkins_url != options.getJenkinsUrl()) {
-			save();
-			load();
-		}
+		save();
+		load();
 	}
 	
 	$scope.subscribe = function(job) {
@@ -38,22 +36,18 @@ function OptionsControl($scope, $http, $timeout, $log, options, jenkins) {
 	}
 	
 	save = function() {
-		options.save($scope.options, function() {
-			$log.info("Options saved!");
-		});
+		storage.set('options', $scope.options);
 	}
 	
 	load = function() {
-		options.load(function(opt) {
-			$scope.$apply(function () {
-				angular.extend($scope.options, opt);
-				jenkins.getJobs({
-					success: addJobs,
-					error: function(data) {
-						$log.error(data);
-					}
-				});
-			})
+		storage.get('options', function(opt) {
+			angular.extend($scope.options, opt);
+			jenkins.getJobs({
+				success: addJobs,
+				error: function(data) {
+					log.error(data);
+				}
+			});
 		})
 	}
 	

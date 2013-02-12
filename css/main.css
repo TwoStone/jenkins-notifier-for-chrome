@@ -45,6 +45,7 @@ html {
 	height: 24px;
 	width:  24px;
 	background-size: contain;
+	margin: auto;
 }
 
 .grey {
