@@ -3,6 +3,8 @@
  */
 var Log = function($log) {
 	
+	this.debugOn = false;
+	
 	this.info = $log.info;
 	
 	this.error = $log.error;
@@ -12,6 +14,8 @@ var Log = function($log) {
 	this.log = $log.log;
 	
 	this.debug = function(message) {
-		console.debug(message);
+		if (this.debugOn) {
+			console.debug(message);
+		}
 	}
 }

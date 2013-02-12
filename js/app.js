@@ -10,7 +10,10 @@ angular.module('jenkins-notifier', [], function($provide) {
 	}]);
 	
 	$provide.factory('log', ['$log', function($log) {
-		return new Log($log);
+		var l = new Log($log);
+		l.debugOn = true; 
+		
+		return l;
 	}]);
 }).directive( [ 'focus', 'blur', 'keyup', 'keydown', 'keypress' ].reduce( function ( container, name ) {
     var directiveName = 'ng' + name[ 0 ].toUpperCase( ) + name.substr( 1 );
