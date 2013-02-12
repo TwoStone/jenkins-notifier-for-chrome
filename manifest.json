@@ -13,6 +13,9 @@
         "default_title": "Jenkins Notifier for Chrome™",
         "default_popup": "popup.html"
     },
+    "background": {
+    	"page": "background.html"
+  	},
     "permissions": [
     	"storage",
         "background",
