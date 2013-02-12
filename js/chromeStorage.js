@@ -21,7 +21,6 @@ var ChromeStorage = function($log) {
 		newData[key] = data; 
 		storageArea.set(newData, function() {
 			$log.debug("Data saved:" + angular.toJson(data, true));
-			notify(key, data);
 		});
 	}
 	
@@ -39,4 +38,10 @@ var ChromeStorage = function($log) {
 			});
 		}
 	}
+	
+	chrome.storage.onChanged.addListener(function(changes) {
+		angular.forEach(changes, function(value, key) {
+			notify(key, value.newValue)
+		});
+	});
 };
