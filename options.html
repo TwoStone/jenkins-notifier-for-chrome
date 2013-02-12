@@ -53,7 +53,7 @@
 								<th class="span1"></th>
 							</tr>
 							<tr ng-repeat="job in options.jobs">
-								<td class="status"><img ng-src="img/{{job.color}}.png"></td>
+								<td class="status"><div class="icon" ng-class="job.color"></div></td>
 								<td><div>{{job.name}}</div></td>
 								<td><input type="button" class="btn btn-danger" value="Unsubscribe" ng-click="unsubscribe(job)"></td>
 							</tr>
@@ -66,7 +66,7 @@
 								<th class="span1"></th>
 							</tr>
 							<tr ng-repeat="job in jobs">
-								<td class="status"><img ng-src="img/{{job.color}}.png"></td>
+								<td class="status"><div class="icon" ng-class="job.color"></div></td>
 								<td>{{job.name}}</td>
 								<td><input type="button" class="btn btn-success" value="Subscribe" ng-click="subscribe(job)"></td>
 							</tr>

@@ -38,6 +38,82 @@ html {
 }
 
 .container .credit {
-margin: 20px 0;
+	margin: 20px 0;
 }
 
+.icon {
+	height: 24px;
+	width:  24px;
+	background-size: contain;
+}
+
+.grey {
+	background-image: url("../img/grey.png");
+}
+
+.blue {
+	background-image: url("../img/blue.png");
+}
+
+.red {
+	background-image: url("../img/red.png");
+}
+
+.yellow {
+	background-image: url("../img/yellow.png");
+}
+
+.aborted {
+	background-image: url("../img/aborted.png");
+}
+
+.grey_anime {
+	background-image: url("../img/grey.png");
+	-webkit-animation-direction: normal;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: blink;
+    -webkit-animation-timing-function: ease;   
+}
+
+.blue_anime {
+	background-image: url("../img/blue.png");
+	-webkit-animation-direction: normal;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: blink;
+    -webkit-animation-timing-function: ease;  
+}
+
+.red_anime {
+	background-image: url("../img/red.png");
+	-webkit-animation-direction: normal;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: blink;
+    -webkit-animation-timing-function: ease;  
+}
+
+.yellow_anime {
+	background-image: url("../img/yellow.png");
+	-webkit-animation-direction: normal;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: blink;
+    -webkit-animation-timing-function: ease;  
+}
+
+.aborted_anime {
+	background-image: url("../img/aborted.png");
+	-webkit-animation-direction: normal;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: blink;
+    -webkit-animation-timing-function: ease;  
+}
+
+@-webkit-keyframes 'blink' {
+    5% { opacity:  1; }
+    50% { opacity: 0.1; }
+    95% { opacity: 1; }
+}

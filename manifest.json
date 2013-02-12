@@ -3,9 +3,9 @@
     "name": "Jenkins Notifier for Chrome™ Plus",
     "version": "0.1.1",
     "icons": {
-        "128": "img/icon.png",
-        "48": "img/icon.png",
-        "16": "img/icon.png"
+        "128": "img/blue.gif",
+        "48": "img/blue.gif",
+        "16": "img/blue.gif"
     },
     "options_page": "options.html",
     "browser_action": {
@@ -21,9 +21,6 @@
         "https://*/"
     ],
     "web_accessible_resources" : [
-    	"img/blue_anime.gif",
-    	"img/blue.png",
-    	"img/icon.png",
     	"css/main.css",
     	"css/bootstrap.css",
     	"css/popup.css",
