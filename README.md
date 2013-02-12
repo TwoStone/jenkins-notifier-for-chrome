@@ -16,7 +16,7 @@ Authors
  * @mallowlabs
  * @mzp
 
-Requirement
+Requirements
 ----------------
 
  * Chrome 22 or latter
