@@ -1,18 +1,12 @@
 /**
  * Options Service for the Jenkins Notifier.
  */
-var Options;
-Options = (function() {
+var Options = function($log) {
 	
-	var options = undefined;
+	var options;
 	
-	function Options($log) {
-		this.log = $log;
-	}
-	
-	Options.prototype.load = function(callback) {
-		this.log.info("Loading options");
-		var $this = this;
+	this.load = function(callback) {
+        $log.info("Loading options");
 		chrome.storage.local.get('options', function(opt) {
 			if (opt.options) {
 				options = opt.options;
@@ -21,29 +15,25 @@ Options = (function() {
 		});
 	};
 	
-	Options.prototype.save = function(opt, callback) {
-		this.log.info("Saving options");
+	this.save = function(opt, callback) {
+		$log.info("Saving options");
 		chrome.storage.local.set({'options': opt}, callback);
 		options = opt;
 	};
 	
-	Options.prototype.getJenkinsUrl = function() {
+	this.getJenkinsUrl = function() {
 		return options.jenkins_url;
 	};
 	
-	Options.prototype.getInterval = function() {
+	this.getInterval = function() {
 		return options.interval;
 	};
 	
-	Options.prototype.getOptions = function() {
+	this.getOptions = function() {
 		return options;
 	};
 	
-	Options.prototype.getJobs = function() {
+	this.getJobs = function() {
 		return options.interval;
 	};
-	
-	
-	
-	return Options;
-})();
+};

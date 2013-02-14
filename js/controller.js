@@ -35,11 +35,11 @@ function OptionsControl($scope, $http, $timeout, log, storage, jenkins) {
 		save();
 	}
 	
-	save = function() {
+	var save = function() {
 		storage.set('options', $scope.options);
 	}
 	
-	load = function() {
+	var load = function() {
 		storage.get('options', function(opt) {
 			angular.extend($scope.options, opt);
 			jenkins.getJobs({
@@ -51,7 +51,7 @@ function OptionsControl($scope, $http, $timeout, log, storage, jenkins) {
 		})
 	}
 	
-	moveJob = function(job, src, dst) {
+	var moveJob = function(job, src, dst) {
 		if (!$scope.$$phase) {
 			$scope.$apply(function() {
 				moveJob(job, src, dst);			
@@ -62,20 +62,20 @@ function OptionsControl($scope, $http, $timeout, log, storage, jenkins) {
 		delete src[job.name];
 	}
 	
-	showInfo = function(info) {
+	var showInfo = function(info) {
 		$scope.infos.push(info);
 		$timeout(function(){
 			$scope.infos.pop();
 		}, 2000);
 	}
 	
-	addJobs = function(jobs) {
+	var addJobs = function(jobs) {
 		angular.forEach(jobs, function(value, key) {
 			addJob(value);
 		});
 	}
 	
-	addJob = function(job) {
+	var addJob = function(job) {
 		if (!$scope.jobs) $scope.jobs = {};
 		
 		if (!$scope.options.jobs[job.name]) {

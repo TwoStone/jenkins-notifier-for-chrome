@@ -14,14 +14,15 @@ function backgroundControl($scope, log, jenkins, storage, $timeout) {
 		});
 	}
 	
-	scheduleCheck = function() {
+	var scheduleCheck = function() {
 		storage.get('options', function(opt) {
-			promise = $timeout(checkServer, options.interval * 1000);
+			promise = $timeout(checkServer, opt.interval * 1000);
 			scheduleCheck(opt);
+            
 		});
 	}
 	
-	checkServer = function() {
+	var checkServer = function() {
 		log.debug("Checking Server");
 	}
 } 

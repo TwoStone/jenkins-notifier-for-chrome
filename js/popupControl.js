@@ -18,7 +18,7 @@ function PopupControl($scope, $timeout, log, storage, jenkins) {
 	
 	$scope.jenkinsDesc = undefined;
 	
-	loadJobs = function() {
+	var loadJobs = function() {
 		jenkins.getJobs({
 			success: function(jobs) {
 				angular.forEach(jobs, function(value) {
@@ -33,7 +33,7 @@ function PopupControl($scope, $timeout, log, storage, jenkins) {
 		})
 	}
 	
-	loadInformation = function() {
+	var loadInformation = function() {
 		jenkins.getJenkinsInformation({
 			success: function(data) {
 				$scope.jenkinsDesc = data.description;
@@ -41,7 +41,7 @@ function PopupControl($scope, $timeout, log, storage, jenkins) {
 		});
 	}
 	
-	isJobContained = function(job) {
+	var isJobContained = function(job) {
 		return $scope.options.jobs[job.name] != undefined;
 	}
 	

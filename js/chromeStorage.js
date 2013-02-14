@@ -41,7 +41,7 @@ var ChromeStorage = function($log) {
 	
 	chrome.storage.onChanged.addListener(function(changes) {
 		angular.forEach(changes, function(value, key) {
-			notify(key, value.newValue)
+			notify(key, value.newValue);
 		});
 	});
 };
